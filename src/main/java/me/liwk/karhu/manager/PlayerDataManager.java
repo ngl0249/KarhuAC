@@ -22,7 +22,6 @@ public final class PlayerDataManager {
         this.karhu = karhu;
     }
 
-
     public KarhuPlayer getPlayerData(final Player player) {
         return playerDataMap.get(player.getUniqueId());
     }
