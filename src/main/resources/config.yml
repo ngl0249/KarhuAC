@@ -1,0 +1,226 @@
+license-key: 'null'
+version-to-download: 'autoupdate'
+Prefix: '&7[&b&l❀&7] '
+MiscPrefix: '&7[&e⚠&7] '
+experimental-alert-symbol: '&aΔ'
+noautoban-alert-symbol: '&c≠'
+AlertsMessage: '&f%player% &7failed &b%check% &7[x&b%vl%&7]'
+MitigationMessage: '&f%player% &7mitigated for &b%check% %vl%x'
+ClientCheckMessage: '&f%player% &7joined using &7[&e%brand%&7]'
+AntiCrashMessage: '&e%player% &fwas kicked for &esuspicious activity &7(&6%debug%&7)'
+NetHandlerMessage: '&e%player% &fwas kicked for &esuspicious network activity &7(&6%debug%&7)'
+VehicleHandlerMessage: '&f%player% &7sent a vehicle packet in an invalid state'
+
+reset-violations-on-leave: false
+
+#The configuration for the hover message on an alert
+AlertsHoverableMessage: |-
+  &f%info%
+  (Ping: %ping% TPS: %tps%) &a(Click to teleport)
+
+AlertsHoverableMessageHighlightColor: '&b'
+GuiHighlightColor: '&l&b'
+
+spigot-api-alert: true #Set this to false if u get errors and cant see alerts
+
+hoverless-alert: false #Set this to true if u get errors and cant see alerts
+
+AlertsClickCommand:
+  command: '/tp %player%'
+
+#Delay between alert 50 = 50ms = 1 tick in minecraft
+alert-delay: 50
+
+#The ban message when a ban is placed
+Punishments:
+  broadcast: true
+  message: |-
+    &7&m--------------------------------------------------
+    &c&l✗ &b&lKARHU CHEAT DETECTION
+    &fKarhu &7has removed a player from the network due to cheating
+    &7&m--------------------------------------------------
+  command-delay-seconds: 0
+
+
+
+#The punish command, don't put ("/")
+PunishCommand:
+  - ban %player% Hacked client
+
+#Enables auto-banning
+autoban: false
+
+disallow-flags-after-punishment: true
+
+server-name: 'Karhu'
+
+bungee:
+  execute-ban-command-in-bungee: false
+  alerts: false
+  alert-post-vl-rate: 10 #now it posts to bungee at 10, 20, 30, 40.... vls
+
+
+#Anticrash
+anticrash:
+  enabled: true
+  move-spam: true
+  place-spam: true
+  large-move: true
+  window-spam: true
+  payload-spam: true
+  slot-spam: true
+  arm-spam: true
+  kick-message: 'java.net.IOException Connection timed out: no further information'
+
+#NetHandler, prevents transaction delaying / cancelling
+nethandler:
+  enabled: false
+  spoof: false
+  delay: false
+  transaction-order: '&c%player% &7ignored order of transactions &7first was &a%first% &7sent §c%sent%'
+  cancel-keepalives-alert: '&c%player% &7cancelled keepalive packets with total of &a%invalid% / %total%'
+  cancel-transactions-alert: '&c%player% &7cancelled transaction packets with total of &a%invalid% / %total%'
+  own-keepalives-alert: '&c%player% &7sent own keepalives &7total of &a%invalid% / %total%'
+  own-transactions-alert: '&c%player% &7sent own transactions &7total of &a%invalid% / %total%'
+  cancel-and-own-kick-message: 'java.net.IOException Connection timed out: no further information'
+  wrong-order-kick-message: 'Timed out (%first% != %received%)'
+
+vehicle-handler:
+  unmount: false
+
+geyser:
+  stop-injecting-bedrock-players: true
+
+unallowed-brands: #This is case sensitive
+  brands: |-
+    Vivecraft
+    Crystalware
+  kick-msg: 'This client is unallowed on our server!'
+
+anti-vpn:
+  enabled: true
+  proxy-check: true
+  malicious-check: true
+  bypass:
+    - UUID1
+    - UUID2
+  kick-message: |-
+    &3&l✧ &b&lKarhu &3&l✧
+
+    &cUsage of VPN is prohibited!
+
+#Pullback:
+pullback:
+  enabled: true
+  type: 'generic' #Modes, (to-the-void, generic)
+
+#Ghostblock
+ghostblock-support:
+  enabled: true
+  liquid-dector: true
+  lagback-on-walk: true
+  update-on-walk: true
+
+#Broadcasts players client on join if enabled
+client-check: true
+
+#Allows a player to bypass auto-ban's with permission "karhu.bypass"
+bypass-permission: false
+
+#Rename anticheat >_<
+anticheat-name: 'Karhu'
+
+#cracked server
+cracked-server: false
+
+high-ping-kick:
+  enabled: false
+  max-ping: 1000
+  ping-over-max-ticks-before-kick: 250
+  kick-message: 'Your ping constantly too high, do something'
+
+packetevents:
+  injectAsync: true
+  ejectAsync: true
+  injectEarly: true
+  kickUninjected: true
+  uninjected-kick-message: '&cWe've failed to load your data, please reconnect!'
+
+discord:
+  enabled: true
+  alert-webhook-url: 'INSERT_HERE'
+  crash-webhook-url: 'INSERT_HERE'
+  send-alerts: true
+  send-bans: true
+  show-world: true
+  show-statistics: true # Show players ping + server tps
+  show-icon-thumbnail: true
+  post-vl-rate: 10 #now it posts to discord at 10, 20, 30, 40.... vls
+  alert-hook-rgb: 255, 255, 255
+  ban-hook-rgb: 255, 255, 255
+
+commands:
+  alerts:
+    enabled: '&b&lKARHU &7// &aAlerts on!'
+    disabled: '&b&lKARHU &7// &cAlerts off!'
+  help: |-
+    &3&l> &b&lKarhu &3&l<
+
+    &b* &7/karhu alerts - check alerts
+    &b* &7/karhu GUI - use GUI
+    &b* &7/karhu logs - check logs from database
+    &b* &7/karhu pastelogs - paste all logs to hastebin
+    &b* &7/karhu recentbans - view recentbans
+    &b* &7/karhu manualban - ban cheater manually
+    &b* &7/karhu stats - view server Timings
+    &b* &7/karhu sessionlogs - check logs that havent expired yet in the vl system
+    &b* &7/karhu info <player> - see info about player
+    &b* &7/karhu version - check Karhu version
+    &b* &7/karhu reload - reload config
+  banwave: |-
+    &3&l> &b&lKarhu &3&l<
+
+    &b* &7/karhu banwave run - run banwave
+    &b* &7/karhu banwave list - see players that will be banned
+    &b* &7/karhu banwave add - add player to banwave
+  logs:
+    ban-color: '&c'
+    highlight-color: '&b'
+  no-permission-message: '&cYou don''t have required permissions!'
+
+
+default-version: '1_8' #only change if you have 1.7.10 spigot - 1.7.10 spigot = default-version: '1_7'
+
+database: 'FlatFile' #MySQL. MongoDB, FlatFile
+
+mysql:
+  user: karhu
+  address: localhost
+  password: karhubest
+  database: KarhuAC
+  port: 3306
+
+mongo:
+  host: 127.0.0.1
+  port: 27017
+  database: 'Karhu'
+  authentication:
+    enabled: false
+    username: 'Karhu'
+    password: 'karhubest'
+
+server-lag-protection:
+  max-tick-length: 120
+  warning-message: '%prefix% &c%player% &fwould've flagged, but server lagged within &c1 second&f.'
+  warning-display-type: CONSOLE
+
+async-kb-fix: false
+join-exempt-ticks: 0
+
+banwaves:
+  punish: 'configurethis %player%'
+  broadcast-caught: true
+  broadcast-complete: true
+  messages:
+    caught: '&b%player% &3has been caught in the &bBan Wave!'
+    complete: '&bKarhu &3has finished the banwave. A total of &b%bans% players &3were banned.'
